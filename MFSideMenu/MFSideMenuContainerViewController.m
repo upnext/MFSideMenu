@@ -718,6 +718,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
             viewController.view.userInteractionEnabled = (self.menuState == MFSideMenuStateClosed);
         }
     }
+    
+    // disable interactive pop gesture recognizer for navigation controllers
+    if ([self.centerViewController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        [self.centerViewController interactivePopGestureRecognizer].enabled = (self.menuState == MFSideMenuStateClosed);
+    }
 }
 
 #pragma mark -
